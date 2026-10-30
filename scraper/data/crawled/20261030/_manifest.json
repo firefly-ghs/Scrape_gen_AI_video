@@ -1,0 +1,163 @@
+{
+  "fetched_at": "2026-10-30T19:57:16",
+  "targets": [
+    {
+      "url": "https://kling.ai/",
+      "slug": "kling_ai_cc2bd1b0",
+      "status": "ok",
+      "title": "Kling AI: Next-Gen AI Video & Image Generator",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://kling.ai/blog/kling40-kling-visual-realism-creative-control-introducing-storytelling",
+      "slug": "kling_ai_blog_kling40_kling_visual_realism_creative_control_introducing_storytel_aefecc66",
+      "status": "ok",
+      "title": "Introducing Kling 4.0: Visual Realism, Creative Control, and Next-Level Storytelling",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://kling.ai/quickstart/klingai-video-o1-user-guide",
+      "slug": "kling_ai_quickstart_klingai_video_o1_user_guide_827d4a3d",
+      "status": "ok",
+      "title": "",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://jimeng.jianying.com/",
+      "slug": "jimeng_jianying_com_1f0b85bc",
+      "status": "ok",
+      "title": "即梦AI - 即刻造梦",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://jimeng.jianying.com/ai-tool/generate?type=agentic",
+      "slug": "jimeng_jianying_com_ai_tool_generate_210877f0",
+      "status": "ok",
+      "title": "即梦AI - 一站式AI创作平台",
+      "error": null,
+      "render_used": true,
+      "screenshot": "jimeng_jianying_com_ai_tool_generate_210877f0.png"
+    },
+    {
+      "url": "https://m.toutiao.com/group/7625479861259272713/",
+      "slug": "m_toutiao_com_group_7625479861259272713_0d2e1a96",
+      "status": "ok",
+      "title": "从“聊天”到“画布”：即梦如何用工具化设计，重新定义AI创作？ - 今日头条",
+      "error": null,
+      "render_used": true,
+      "screenshot": "m_toutiao_com_group_7625479861259272713_0d2e1a96.png"
+    },
+    {
+      "url": "https://jimeng.jianying.com/tools/seedance-2-5",
+      "slug": "jimeng_jianying_com_tools_seedance_2_5_11622a6b",
+      "status": "ok",
+      "title": "Seedance 2.5 免费 AI 视频生成器（支持音频）| 即梦",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://www.vidu.cn/",
+      "slug": "www_vidu_cn_2a2556e7",
+      "status": "ok",
+      "title": "Vidu AI - Vidu AI - 全球领先的AI内容生产平台",
+      "error": null,
+      "render_used": true,
+      "screenshot": "www_vidu_cn_2a2556e7.png"
+    },
+    {
+      "url": "https://platform.vidu.com/docs/overview/function-list",
+      "slug": "platform_vidu_com_docs_overview_function_list_32fe976c",
+      "status": "ok",
+      "title": "Function List | Vidu API",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://hailuoai.video/create",
+      "slug": "hailuoai_video_create_c64310a3",
+      "status": "ok",
+      "title": "AI Video & Image Creator | Start Creating | Hailuo AI",
+      "error": null,
+      "render_used": true,
+      "screenshot": "hailuoai_video_create_c64310a3.png"
+    },
+    {
+      "url": "https://hailuoai.video/agent-landing-page",
+      "slug": "hailuoai_video_agent_landing_page_45627733",
+      "status": "ok",
+      "title": "AI Video Agent: Your Director for Complex Videos | Hailuo AI",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://runway.com/campaign/speed-to-value",
+      "slug": "runway_com_campaign_speed_to_value_e2d44e32",
+      "status": "ok",
+      "title": "Make Your First Video in 2 Minutes | Runway",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://runway.com/product/ai-video-generator",
+      "slug": "runway_com_product_ai_video_generator_81f953da",
+      "status": "ok",
+      "title": "AI Video Generator | Runway",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://36kr.com/p/4045578693416073",
+      "slug": "36kr_com_p_4045578693416073_7fb7da52",
+      "status": "ok",
+      "title": "​AI视频，「Runway」逆袭？-36氪",
+      "error": null,
+      "render_used": true,
+      "screenshot": "36kr_com_p_4045578693416073_7fb7da52.png"
+    },
+    {
+      "url": "https://www.pikaslabs.com/",
+      "slug": "www_pikaslabs_com_86e04ca3",
+      "status": "ok",
+      "title": "Pika Labs - AI Video, Image & Audio Creative Platform",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://pikaslabs.com/pika-2.5/",
+      "slug": "pikaslabs_com_pika_2_5_eec6881a",
+      "status": "ok",
+      "title": "Pika 2.5 - The AI Video Engine for Cinematic Short-Form Content | Pika Labs",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://openai.com/my-MM/index/sora-2/",
+      "slug": "openai_com_my_MM_index_sora_2_f5465331",
+      "status": "ok",
+      "title": "Sora 2 is here | OpenAI",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://iqilian.com/learn/jimeng-vs-kling/",
+      "slug": "iqilian_com_learn_jimeng_vs_kling_79435e4c",
+      "status": "ok",
+      "title": "即梦 vs 可灵：AI 视频哪个好？分场景选型｜奇连 AI",
+      "error": null,
+      "render_used": false
+    },
+    {
+      "url": "https://36kr.com/p/3707250742915849",
+      "slug": "36kr_com_p_3707250742915849_a8392a89",
+      "status": "ok",
+      "title": "字节做了一个没有“人”的抖音-36氪",
+      "error": null,
+      "render_used": true,
+      "screenshot": "36kr_com_p_3707250742915849_a8392a89.png"
+    }
+  ]
+}

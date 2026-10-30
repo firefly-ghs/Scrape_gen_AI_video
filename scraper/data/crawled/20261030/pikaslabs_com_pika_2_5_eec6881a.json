@@ -1,0 +1,105 @@
+{
+  "url": "https://pikaslabs.com/pika-2.5/",
+  "fetched_at": "2026-10-30T19:58:45",
+  "title": "Pika 2.5 - The AI Video Engine for Cinematic Short-Form Content | Pika Labs",
+  "meta": {
+    "description": "Pika 2.5 is the upgraded AI video model from Pika Labs. Sharper visuals, smoother camera motion, scene extension, and cinema-grade prompt adherence — generate 1080p clips up to 25 seconds for TikTok, Reels, Shorts, and ads.",
+    "keywords": "Pika 2.5, Pika AI, Pika Labs, AI video generator, text to video, image to video, Pikaframes, AI video model, cinematic AI video, 1080p AI video, scene extension, motion control, AI video for TikTok, AI video for Reels, AI video for YouTube Shorts, Pikaffects, Pikaswaps, Pikadditions, video AI 2026, Pika.art, AI video generation",
+    "og_title": "",
+    "og_description": "",
+    "og_image": ""
+  },
+  "headings": {
+    "h1": [
+      "Pika 2.5 v2.5 Cinematic by default ."
+    ],
+    "h2": [
+      "The model that took Pika production-grade .",
+      "See Pika 2.5 in motion .",
+      "Across every aesthetic.",
+      "Six upgrades from 2.2 to 2.5.",
+      "The numbers behind 2.5.",
+      "Treat camera as a first-class input.",
+      "Idea to share, in four steps.",
+      "Copy-paste prompts that just work .",
+      "Built for short-form at scale.",
+      "How 2.5 stacks up against earlier Pika models.",
+      "Questions, answered .",
+      "Generate your first cinematic clip."
+    ],
+    "h3": [
+      "Pika Labs official showcase",
+      "Pika hands-on tutorial",
+      "Five creative VFX techniques",
+      "Sharper visuals",
+      "Smoother camera motion",
+      "Scene extension",
+      "Reliable prompt adherence",
+      "Stronger identity consistency",
+      "Faster generation",
+      "Cinematic photorealism",
+      "Anime / illustrated",
+      "Product showcase",
+      "Travel / aerial reel"
+    ]
+  },
+  "paragraphs": [
+    "Pika 2.5 is the upgraded video engine powering every Pika tool. Sharper visuals, smoother camera motion, scene extension up to 25 seconds, and prompt adherence good enough for production work — built for TikTok, Reels, Shorts, and ad-grade short form.",
+    "Earlier Pika models proved AI video could be fast and creative. Pika 2.5 is the release that proved it could be shippable . Sharper visuals. Smoother camera motion. Stable identity across longer durations. Prompt adherence reliable enough that creators stop reshooting and start shipping. The model addresses the two complaints that kept earlier text-to-video tools in the \"cool demo\" category — clips too short to be useful , and too little control over what happened in them .",
+    "Pika 2.5 closes both. Scene extension lets generations build past the original clip boundary by treating final frames as conditioning context for the next pass — pushing native clips up to roughly 15 seconds, with iterative extension reaching 25 seconds via Pikaframes. Layered motion control gives creators influence over camera direction, subject action, and environmental motion at the prompt level, with Pika 2.5 the first release that treats camera language as a first-class citizen.",
+    "Under the hood, the architecture handles spatial relationships, object permanence, and temporal consistency far better than its predecessors. Multi-subject scenes hold together. Hands and fingers are improved (still occasionally creative, but better). Reference-driven generation provides a stable anchor for styling and identity. And generation speed lands around 60–90 seconds for a typical 1080p clip — fast enough that iteration cycles shrink dramatically and trying five different prompts in two minutes becomes routine.",
+    "Three videos from the Pika community and official Pika Labs releases — covering the launch announcement, hands-on tutorial walkthroughs, and creative VFX techniques. Hit play to see real Pika output across realistic, cinematic, and stylized aesthetics.",
+    "The official Pika Labs reel demonstrating the model's range across realistic portraits, anime characters, stylized scenes, and cinematic motion. Set the baseline for what current-generation AI video can produce.",
+    "Comprehensive walkthrough of the Pika web app — uploading reference images, writing camera-language prompts, working with Pikaframes for keyframe control, and exporting finished clips for social platforms.",
+    "Five advanced creative techniques on top of Pika — Pikaframes keyframe transitions, Pikaffects surreal physics, layered motion control, and prompt structures that produce scroll-stopping social content.",
+    "Pika 2.5 holds visual quality across cinematic photoreal, anime, stylized illustration, product, and editorial looks. Hover any tile for a sense of the range.",
+    "Shallow depth of field, controlled lighting, slow camera push-ins. Production-ready out of the box.",
+    "Anime, illustration, comic styles with consistent line work and motion.",
+    "Rotating product shots, light sweeps, particles — built for ad-grade output.",
+    "Smooth aerial sweeps, golden-hour grading, drone-like motion paths.",
+    "Studio lighting, identity stability, high-detail facial work.",
+    "Each pillar fixes a specific complaint creators had with earlier Pika models — and lifts the whole stack into production-grade territory.",
+    "Higher textural detail across every output. Materials read true — leather grain, brushed aluminum, fabric weave, skin pores. Less \"AI smoothness,\" more shippable footage.",
+    "Camera direction is now a first-class citizen. Push-ins, dolly-outs, tilts, rolls, focal-length cues all read accurately — temporal consistency is dramatically improved on gentle moves.",
+    "Final frames become conditioning context for the next pass. Native clips reach 10–15 seconds in a single session; Pikaframes extends to 25 seconds with stable identity.",
+    "Multi-part prompts execute correctly. Multi-subject scenes hold without merging. Negative prompts work as expected. The model interprets specifics rather than averaging them away.",
+    "Characters, products, and visual styles stay stable across longer durations. Reference-image guidance gives a hard anchor for repeated subjects across multiple shots.",
+    "Optimized inference pipeline — typical 1080p clips render in 60–90 seconds. Turbo mode cuts that further at lower credit cost. Faster iteration loop changes how creators work.",
+    "What the model actually outputs — resolution, durations, ratios, formats. Useful for planning campaigns and budgeting credits.",
+    "Native at Pro Mode. Standard outputs at 720p. Free tier is 480p for fast iteration.",
+    "5-second drafts to 25-second Pikaframes extensions. Iterative extension supported.",
+    "16:9, 9:16, 1:1, 4:5, 5:4, 3:2, 2:3 — covers every major social platform.",
+    "Cinema-standard 24 frames per second for film-like motion blur and pacing.",
+    "Typical 10-second 1080p clip. Turbo mode cuts further; complex prompts run longer.",
+    "Standard MP4 with H.264 video codec. Native compatibility with every editor and platform.",
+    "Text-to-Video, Image-to-Video, Video-to-Video. Reference images stabilise outputs.",
+    "Available via Fal.ai for production integrations and via Pika Agent API for AI workflows."
+  ],
+  "cta_texts": [
+    "Sign in",
+    "Try Pika 2.5 →",
+    "⚡ Generate with 2.5",
+    "Watch sample videos",
+    "Explore AI Powers",
+    "Pricing",
+    "App Store · iOS"
+  ],
+  "nav_links": [
+    "Pika Labs",
+    "Pika 2.5",
+    "Pikaformance",
+    "AI Powers",
+    "Agents",
+    "AI Selves",
+    "PikaStream",
+    "Sign in",
+    "Try Pika 2.5 →"
+  ],
+  "stats": {
+    "image_count": 5,
+    "link_count": 36,
+    "visible_text_len": 18202
+  },
+  "status": "ok",
+  "error": null
+}

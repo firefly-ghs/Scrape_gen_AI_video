@@ -1,0 +1,84 @@
+{
+  "url": "https://hailuoai.video/agent-landing-page",
+  "fetched_at": "2026-10-30T19:58:20",
+  "title": "AI Video Agent: Your Director for Complex Videos | Hailuo AI",
+  "meta": {
+    "description": "Meet the AI Video Agent, a tool for pro-level creation. It provides fine-tuned control over every scene for cinematic results. Direct your own AI film.",
+    "keywords": "AI Video Agent: Your Director for Complex Videos | Hailuo AI",
+    "og_title": "AI Video Agent: Your Director for Complex Videos | Hailuo AI",
+    "og_description": "Meet the AI Video Agent, a tool for pro-level creation. It provides fine-tuned control over every scene for cinematic results. Direct your own AI film.",
+    "og_image": "https://cdn.hailuoai.video/open-hailuo-video-web/public_assets/favicon.png"
+  },
+  "headings": {
+    "h1": [
+      "海螺视频 Agent 快速生成，高品质呈现"
+    ],
+    "h2": [
+      "用 AI 即时打造高质量视频创意",
+      "解锁海螺视频Agent的旗舰级 AI 视频创作能力",
+      "几分钟内创建 高效制作高质量视频",
+      "启发性应用场景",
+      "定价",
+      "API",
+      "您的隐私，我们的优先考虑",
+      "常见问题"
+    ],
+    "h3": [
+      "AI 智能生成",
+      "零门槛一键成片",
+      "实时可视化生成过程",
+      "精密工作流编排",
+      "视频场景连贯",
+      "个性化定制",
+      "实时迭代与片段生成",
+      "极速生成",
+      "动态营销活动",
+      "深度教育内容",
+      "创意叙事与原型设计",
+      "海螺视频 Agent"
+    ]
+  },
+  "paragraphs": [
+    "借助直观的创作流程与强大的 AI 技术 轻松将灵感转化为引人注目的视频内容",
+    "可视化设计并灵活控制复杂的制作流程，串联多重生成节点，打造真正差异化的视频内容。",
+    "突破时长限制，生成多镜头连续画面，轻松实现无缝场景切换，呈现沉浸式视觉体验。",
+    "从镜头切换到生成风格，全面调整 AI 参数，精准打造符合需求的每一帧画面。",
+    "通过动态图形界面实现即时反馈，所见即所得，边创作边预览，效率与质量同步提升。",
+    "我们直观的平台让每个人都能轻松进行专业视频创作。从概念到完成，用AI的力量让您的想法栩栩如生。",
+    "了解 海螺视频 Agent 如何在各个行业和应用中改变创意工作流程。",
+    "生成一系列相互关联的宣传视频，从初始预告片到详细的产品展示，全部可根据活动需求实时调整。",
+    "通过将多个概念、视觉示例和解说片段链接成连贯的学习体验，创建全面的解释视频或教程。",
+    "为短片、游戏概念或艺术项目开发复杂的叙事或可视化复杂场景，具有轻松修改和扩展故事的灵活性。",
+    "在 海螺视频 Agent，我们致力于保护您的数据和创意资产。您的所有输入、项目文件和生成的视频都经过安全处理。您保留对所创建内容的完全所有权。我们采用强大的安全措施，确保您的信息保持机密，并按照全球隐私标准进行处理。",
+    "借助我们先进的 AI 驱动平台，将您的创意愿景转化为引人入胜的视频内容。                   加入数千位正在使用海螺视频Agent创作的创作者行列，开启高效创作新体验。"
+  ],
+  "cta_texts": [
+    "开始创作",
+    "立即开始创作",
+    "探索所有应用场景",
+    "查看定价方案",
+    "查看 API 文档"
+  ],
+  "nav_links": [
+    "MiniMax M1",
+    "MiniMax Hailuo 02",
+    "Speech-02-hd",
+    "Speech-02-turbo",
+    "Chat",
+    "Agent",
+    "Hailuo Video",
+    "Audio",
+    "Talkie",
+    "API Platform",
+    "Affiliate Program",
+    "Company",
+    "What's New"
+  ],
+  "stats": {
+    "image_count": 0,
+    "link_count": 17,
+    "visible_text_len": 1391
+  },
+  "status": "ok",
+  "error": null
+}

@@ -1,0 +1,111 @@
+{
+  "url": "https://runway.com/product/ai-video-generator",
+  "fetched_at": "2026-10-30T19:58:24",
+  "title": "AI Video Generator | Runway",
+  "meta": {
+    "description": "Generate, edit, animate and extend video with the most powerful generative models in one place. Start from text, an image or existing footage.",
+    "keywords": "",
+    "og_title": "AI Video Generator | Runway",
+    "og_description": "Generate, edit, animate and extend video with the most powerful generative models in one place. Start from text, an image or existing footage.",
+    "og_image": ""
+  },
+  "headings": {
+    "h1": [
+      "AI video generator"
+    ],
+    "h2": [
+      "How to use AI for video generation",
+      "Precise editing on real footage",
+      "Stop describing your vision. Show it.",
+      "Generate video from text, an image or a clip",
+      "Bring any image to life with AI animation",
+      "Consistent characters across every shot",
+      "Add dialogue, voiceover or music",
+      "Used in production",
+      "All the best AI video models in one place",
+      "FAQ",
+      "Make your next video on Runway"
+    ],
+    "h3": [
+      "Start from a prompt, image or clip",
+      "Refine the video as needed",
+      "Extend, upscale and export",
+      "Relight a scene",
+      "Swap backdrop",
+      "Add or remove objects",
+      "Animate characters",
+      "Animate products",
+      "Animate entire scenes",
+      "Lionsgate",
+      "Salomon",
+      "Silverside",
+      "Kling O3",
+      "Veo 3.1",
+      "Seedance 2.5",
+      "Runway Ruby"
+    ]
+  },
+  "paragraphs": [
+    "Runway app for iPhone Runway app for Android",
+    "Generate, edit, animate and extend video with the most powerful generative models in one place.",
+    "When generating with AI video, you choose where to start. Start with an image or existing video if you have one, or prompt from scratch if you don’t. Whichever input you choose, Runway will recommend the AI video model best suited for the job.",
+    "AI video generation is just as much about editing as it is about generating from scratch. With Runway, you can use models like Aleph 2.0 or Apps like Remove from Video and Change Video Backdrop to make precise changes until you’re satisfied with the final result.",
+    "Once your video is shaping up the way you want, it’s time to finalize. Extend it to full length, upscale it for the resolution your project needs, and export when it’s ready to go.",
+    "Generation is only the start. With AI video, editing is just as central to the process. With Runway, easily add or remove an object, change the time of day, relight a scene or swap a backdrop — while keeping the rest of your video footage exactly how you like it.",
+    "Change lighting, mood and time of day on existing footage.",
+    "Backdrop swap — outdoor → studio",
+    "Replace any background without masking or rotoscoping.",
+    "Place, move or erase elements from a real clip with a text prompt.",
+    "With text to video AI generation, your description is the only input you need. Write out the scene — the action, the setting, the mood — and Runway turns it into a clip from scratch.",
+    "Use Runway as an AI animation generator for anything from subtle movement to full-scene action. Give static visuals motion that feels intentional while staying aligned with your creative direction.",
+    "Turn a still character into a performance with expressions, gestures and movement.",
+    "Add motion and camera direction to static product imagery.",
+    "Turn concept art and still compositions into moving shots.",
+    "Upload an image or video of your character as a reference to maintain that exact character’s look and feel across everything you generate. With references in Runway, the same character shows up in shot two, three and ten without drifting.",
+    "AI video with sound, start to finish. Generate dialogue and music during generation on supported models, or add voiceover and music to any clip afterward.",
+    "Agencies, brands and studios use Runway across real campaigns and productions.",
+    "Explore how Runway and Lionsgate are partnering to put frontier AI in the hands of Hollywood’s filmmakers.",
+    "See how Salomon used Runway to build its latest global campaign in half the time of a traditional shoot.",
+    "Learn how Silverside AI uses Runway to build Coca-Cola’s top-performing ads at 65% lower cost.",
+    "Generate videos with Runway’s proprietary models and leading third-party models from Google, OpenAI, ByteDance and more. Switch between models to try different looks, motion styles and speeds in one workflow.",
+    "Multi-modal video with audio, keyframes and up to 4K output.",
+    "Google’s cinematic video generation with native audio and speech.",
+    "Multi-modal video generation with sound from text, images, video or audio.",
+    "Runway’s SDR-to-HDR grading model: true HDR masters from any video.",
+    "Generate, edit and extend with the most powerful AI video generation models in one place. Free to start."
+  ],
+  "cta_texts": [
+    "Try app",
+    "Pricing",
+    "Login",
+    "Try Runway",
+    "Try Runway for free",
+    "See all video editing Apps",
+    "Start generating",
+    "Text to video",
+    "Image to video",
+    "Video to video",
+    "Try the Add Dialogue App",
+    "Credits by model",
+    "Android app ↗",
+    "iOS app ↗",
+    "Your Privacy Choices",
+    "Cookie Settings"
+  ],
+  "nav_links": [
+    "Creative",
+    "Dev",
+    "Robotics",
+    "Research",
+    "Resources",
+    "Enterprise",
+    "Pricing"
+  ],
+  "stats": {
+    "image_count": 24,
+    "link_count": 98,
+    "visible_text_len": 8896
+  },
+  "status": "ok",
+  "error": null
+}

@@ -1,0 +1,90 @@
+{
+  "url": "https://platform.vidu.com/docs/overview/function-list",
+  "fetched_at": "2026-10-30T19:58:01",
+  "title": "Function List | Vidu API",
+  "meta": {
+    "description": "The Vidu open platform currently supports a wide range of features, covering video, audio, image, and creative use cases across various development scenarios. The function list is continuously updated:",
+    "keywords": "",
+    "og_title": "",
+    "og_description": "",
+    "og_image": ""
+  },
+  "headings": {
+    "h1": [
+      "Function List"
+    ],
+    "h2": [
+      "Search documentation",
+      "Features",
+      "Get started",
+      "About Us"
+    ],
+    "h3": []
+  },
+  "paragraphs": [
+    "Search titles, sections, headings, tables, and document content.",
+    "The Vidu open platform currently supports a wide range of features, covering video, audio, image, and creative use cases across various development scenarios. The function list is continuously updated:",
+    "Generate a video from an input image and prompt description",
+    "Freely select the video's aspect ratio, duration, resolution, and motion amplitude",
+    "Support for adding background music",
+    "Support for selecting multiple generation modes",
+    "Generate a video that references the subject or scene of input images",
+    "Support for uploading multiple images",
+    "Input a start frame image and an end frame image, and generate a video based on the prompt",
+    "Generate a video directly from a prompt describing the scene",
+    "Support for long text descriptions",
+    "Real-Time Interactive Digital Human",
+    "Input an image, persona, and user audio/video for real-time conversation Real-time interaction where the digital human converses with the user in real time, supports interruption, and has bidirectional perception. Vidu S provides the full pipeline from speech to rendering",
+    "Generate real-time video by referencing digital human audio + action text Real-time interaction — you already have your own RTC channel and real-time voice capability; Vidu S only needs to render the digital human and stream it to your channel",
+    "Input a digital human image + digital human audio + action text to generate a video file Asynchronous generation — one character image + one audio clip (or text) generates a speaking video with aligned lip sync and movement",
+    "Input a user audio/video stream + replacement image to generate a real-time video Streaming video editing: continuously receives a video stream and outputs the edited result in real time, with the ability to switch the reference image or scene mid-stream without interrupting the stream",
+    "Generate an image that references the subject or scene of input images",
+    "Image characters, objects, and scenes remain highly consistent throughout",
+    "Freely select the image's aspect ratio and resolution, with support for 2K and 4K",
+    "Generate an image directly from a prompt describing the scene",
+    "Reference an original image and a reference image to replace elements in the original image",
+    "Support for replacing elements in the original image via text description",
+    "Generate audio directly from a prompt",
+    "Support for generating creative sound effects or various types of background music",
+    "Freely select the audio duration",
+    "Controllable Text to Sound Effects",
+    "Generate controllable, time-sequenced sound effects directly from a prompt",
+    "Use a timeline to flexibly control the order and duration of multiple sound effects",
+    "Support for overlapping multiple sound effects",
+    "Control speech rate, pauses, volume, and polyphonic character pronunciation"
+  ],
+  "cta_texts": [
+    "Pricing",
+    "Support",
+    "Contact sales",
+    "Get started",
+    "Search documentation ⌘K / Ctrl K",
+    "Vidu Q Video Models",
+    "Audio Generation",
+    "One-click Solutions",
+    "Task Management",
+    "Other Documentation",
+    "MCP Service",
+    "Copy page",
+    "On this page",
+    "Overview",
+    "Start-End Frame to Video",
+    "Editing Edition"
+  ],
+  "nav_links": [
+    "API",
+    "Models",
+    "Solutions",
+    "Playground",
+    "Pricing",
+    "Docs",
+    "About"
+  ],
+  "stats": {
+    "image_count": 0,
+    "link_count": 93,
+    "visible_text_len": 7034
+  },
+  "status": "ok",
+  "error": null
+}

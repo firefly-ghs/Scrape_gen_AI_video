@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrameBurn - AI 视频生成</title>
+    <style>
+      :root {
+        --bg: #09111f;
+        --panel: rgba(15, 23, 42, 0.85);
+        --panel-soft: rgba(30, 41, 59, 0.8);
+        --line: rgba(148, 163, 184, 0.2);
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #7c3aed;
+        --accent-2: #22d3ee;
+        --success: #34d399;
+        --danger: #f87171;
+        --warn: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: linear-gradient(135deg, #020817 0%, #111827 45%, #0f172a 100%);
+        color: var(--text);
+      }
+      .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px 60px; }
+
+      /* ---------- 顶栏 ---------- */
+      .topbar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 16px; }
+      .eyebrow { margin: 0 0 6px; color: var(--accent-2); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
+      h1 { margin: 0 0 6px; font-size: clamp(2rem, 4vw, 2.6rem); }
+      .subtitle { margin: 0; color: var(--muted); font-size: .95rem; }
+      .status-pill {
+        flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px;
+        padding: 8px 14px; border-radius: 999px; font-size: .86rem; font-weight: 600;
+        border: 1px solid rgba(148, 163, 184, .35); background: rgba(148, 163, 184, .08); color: var(--muted);
+      }
+      .status-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+      .status-pill.ok { border-color: rgba(52, 211, 153, .45); background: rgba(52, 211, 153, .1); color: #a7f3d0; }
+      .status-pill.ok .dot { background: var(--success); box-shadow: 0 0 8px var(--success); }
+      .status-pill.down { border-color: rgba(248, 113, 113, .45); background: rgba(248, 113, 113, .1); color: #fecaca; }
+      .status-pill.down .dot { background: var(--danger); }
+
+      /* ---------- 信任标签 ---------- */
+      .trust-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+      .trust-tag {
+        font-size: .84rem; color: #dbeafe; padding: 6px 13px; border-radius: 999px;
+        border: 1px solid rgba(34, 211, 238, .35); background: rgba(34, 211, 238, .08);
+      }
+
+      /* ---------- 布局 ---------- */
+      .layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: start; }
+      .panel {
+        background: var(--panel); border: 1px solid var(--line); border-radius: 20px;
+        padding: 24px; box-shadow: 0 20px 30px rgba(15, 23, 42, .3);
+      }
+      .panel h2 { margin: 0 0 16px; font-size: 1.05rem; }
+      form { display: flex; flex-direction: column; gap: 16px; }
+      label { display: block; margin-bottom: 8px; color: var(--muted); font-size: .92rem; }
+
+      /* ---------- 示例胶囊 ---------- */
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+      .chip {
+        font-size: .82rem; color: var(--text); background: var(--panel-soft);
+        border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+        cursor: pointer; transition: border-color .15s ease; text-align: left;
+      }
+      .chip:hover { border-color: var(--accent-2); }
+
+      /* ---------- 表单控件 ---------- */
+      textarea, input, select {
+        width: 100%; border-radius: 12px; border: 1px solid var(--line);
+        background: var(--panel-soft); color: var(--text); padding: 12px 14px; font: inherit;
+      }
+      textarea { resize: vertical; min-height: 150px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+      .pill-group input { position: absolute; opacity: 0; pointer-events: none; }
+      .pill-group label {
+        margin: 0; cursor: pointer; padding: 8px 16px; border-radius: 999px;
+        border: 1px solid var(--line); background: var(--panel-soft); color: var(--muted);
+        font-size: .88rem; transition: all .15s ease;
+      }
+      .pill-group input:checked + label {
+        border-color: var(--accent); color: #fff;
+        background: linear-gradient(135deg, rgba(124, 58, 237, .35), rgba(34, 211, 238, .25));
+      }
+      .switch-row {
+        display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+        border-radius: 999px; border: 1px solid var(--line); background: var(--panel-soft);
+        color: var(--muted); cursor: pointer; font-size: .88rem; user-select: none;
+      }
+      .switch-row input { display: none; }
+      .switch-row:has(input:checked) {
+        border-color: var(--accent); color: #fff;
+        background: linear-gradient(135deg, rgba(124, 58, 237, .35), rgba(34, 211, 238, .25));
+      }
+      .helper { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+
+      .btn-primary {
+        width: 100%; margin-top: 4px; border: none; border-radius: 12px; padding: 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+        font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform .2s ease, opacity .2s ease;
+      }
+      .btn-primary:hover { transform: translateY(-1px); }
+      .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+      .btn-ghost {
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        border-radius: 10px; border: 1px solid var(--line); background: var(--panel-soft);
+        color: var(--text); padding: 8px 14px; font-size: .86rem; cursor: pointer; text-decoration: none;
+      }
+      .btn-ghost:hover { border-color: var(--accent-2); }
+
+      /* ---------- 步骤条 ---------- */
+      .steps { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+      .step {
+        flex: 1; display: flex; align-items: center; gap: 8px; justify-content: center;
+        padding: 9px 8px; border-radius: 12px; border: 1px solid var(--line);
+        background: var(--panel-soft); color: var(--muted); font-size: .86rem;
+      }
+      .step .st-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+      .step.active { border-color: rgba(34, 211, 238, .5); color: var(--accent-2); }
+      .step.active .st-dot { animation: pulse 1s ease-in-out infinite; }
+      .step.done { border-color: rgba(52, 211, 153, .45); color: var(--success); }
+      .step.failed { border-color: rgba(248, 113, 113, .5); color: var(--danger); }
+      @keyframes pulse { 50% { opacity: .25; } }
+
+      /* ---------- 结果区 ---------- */
+      .result-holder { min-height: 320px; display: flex; align-items: center; justify-content: center; }
+      .empty-hint { text-align: center; color: var(--muted); font-size: .92rem; line-height: 1.8; }
+      input[type="file"] { padding: 8px; font-size: .88rem; }
+      input[type="file"]::file-selector-button {
+        border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft);
+        color: #e2e8f0; padding: 6px 12px; margin-right: 10px; cursor: pointer; font: inherit;
+      }
+      input[type="file"]::file-selector-button:hover { border-color: var(--accent-2); }
+      video { width: 100%; border-radius: 14px; margin-top: 12px; background: #000; }
+      .alert {
+        display: none; margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+        font-size: .9rem; line-height: 1.5; border: 1px solid;
+      }
+      .alert.error { display: block; color: #fecaca; border-color: rgba(248, 113, 113, .45); background: rgba(248, 113, 113, .1); }
+      .alert.ok { display: block; color: #a7f3d0; border-color: rgba(52, 211, 153, .4); background: rgba(52, 211, 153, .08); }
+
+      .bill-card {
+        margin-top: 14px; border: 1px solid var(--line); border-radius: 14px;
+        background: rgba(15, 23, 42, .6); padding: 14px 16px; font-size: .88rem;
+      }
+      .bill-card .kvs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; color: var(--muted); }
+      .bill-card strong { color: var(--text); }
+
+      /* ---------- 画廊 ---------- */
+      .gallery { margin-top: 28px; }
+      .gallery h2 { margin: 0 0 4px; font-size: 1.05rem; }
+      .gallery .g-sub { margin: 0 0 16px; color: var(--muted); font-size: .86rem; }
+      .g-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+      .g-card {
+        border: 1px solid var(--line); border-radius: 16px; background: var(--panel);
+        padding: 16px; display: flex; flex-direction: column; gap: 10px;
+      }
+      .g-card .g-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+      .badge { font-size: .76rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+      .badge.queued { border-color: rgba(251, 191, 36, .4); color: var(--warn); }
+      .badge.running { border-color: rgba(34, 211, 238, .5); color: var(--accent-2); }
+      .badge.completed { border-color: rgba(52, 211, 153, .45); color: var(--success); }
+      .badge.failed { border-color: rgba(248, 113, 113, .45); color: var(--danger); }
+      .g-meta { color: var(--muted); font-size: .8rem; }
+      .g-prompt {
+        color: var(--text); font-size: .86rem; line-height: 1.5;
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .g-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+      .g-actions .btn-ghost { font-size: .8rem; padding: 6px 10px; }
+      .btn-danger { color: #fecaca; border-color: rgba(248, 113, 113, .4); }
+
+      /* ---------- FAQ / 页脚 ---------- */
+      .faq { margin-top: 28px; }
+      .faq h2 { margin: 0 0 16px; font-size: 1.05rem; }
+      .faq details {
+        border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+        padding: 14px 18px; margin-bottom: 10px;
+      }
+      .faq summary { cursor: pointer; font-weight: 600; font-size: .94rem; }
+      .faq details p { margin: 10px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.7; }
+      footer {
+        margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line);
+        color: var(--muted); font-size: .82rem; line-height: 1.8;
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+      }
+
+      @media (max-width: 900px) {
+        .layout { grid-template-columns: 1fr; }
+        .row { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI 视频生成平台</p>
+          <h1>FrameBurn</h1>
+          <p class="subtitle">一句话生成可播放的视频片段，先验证，再放大</p>
+        </div>
+        <div class="status-pill" id="status-pill"><span class="dot"></span><span id="status-text">检测服务中…</span></div>
+      </header>
+
+      <div class="trust-tags">
+        <span class="trust-tag">无需登录，即开即用</span>
+        <span class="trust-tag">本地生成不消耗 token</span>
+        <span class="trust-tag">480p 测试 3 秒出片</span>
+      </div>
+
+      <main class="layout">
+        <section class="panel form-panel">
+          <h2>创建生成任务</h2>
+
+          <form id="generate-form">
+            <div>
+              <label for="prompt">创作提示词</label>
+              <div class="chips" id="prompt-chips"></div>
+              <textarea id="prompt" name="prompt" rows="6" placeholder="例如：夜晚城市，雨雾弥漫，镜头缓慢推进，人物在路灯下抬头望向天空。"></textarea>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="quality">画质</label>
+                <div class="pill-group" id="quality-pills"></div>
+              </div>
+              <div>
+                <label>时长（秒）</label>
+                <div class="pill-group" id="duration-pills"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="mode">输入类型</label>
+                <select id="mode" name="mode">
+                  <option value="text" selected>文本生成</option>
+                  <option value="video">视频生成</option>
+                </select>
+              </div>
+              <div>
+                <label for="provider">生成引擎</label>
+                <select id="provider" name="provider">
+                  <option value="local" selected>本地模拟（不消耗 token）</option>
+                  <option value="volc">火山 API（会消耗 token）</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="video-file">参考视频（可选，视频生成模式必填）</label>
+                <input id="video-file" name="video" type="file" accept="video/mp4" />
+              </div>
+              <div>
+                <label>&nbsp;</label>
+                <label class="switch-row for-audio">
+                  <input id="with_audio" name="with_audio" type="checkbox" />
+                  <span>带音频</span>
+                </label>
+              </div>
+            </div>
+
+            <p class="helper">建议：先用 480p + 3s + 本地模拟验证流程，再切火山 API。</p>
+
+            <button class="btn-primary" id="submit-btn" type="submit">生成视频</button>
+          </form>
+        </section>
+
+        <section class="panel result-panel">
+          <h2>生成结果</h2>
+          <div class="steps" id="steps">
+            <div class="step" data-step="queued"><span class="st-dot"></span>排队</div>
+            <div class="step" data-step="running"><span class="st-dot"></span>生成中</div>
+            <div class="step" data-step="completed"><span class="st-dot"></span>完成</div>
+          </div>
+          <div class="result-holder" id="result-holder">
+            <p class="empty-hint">等待开始生成……<br />生成的视频会出现在这里，也可以随时在下方「最近任务」中回看。</p>
+          </div>
+          <div class="bill-card" id="bill-card" style="display:none">
+            <div class="kvs" id="bill-kvs"></div>
+          </div>
+          <div class="alert" id="alert-box"></div>
+        </section>
+      </main>
+
+      <section class="gallery" id="gallery" hidden>
+        <h2>最近任务</h2>
+        <p class="g-sub">点击卡片查看结果；失败的任务可一键复用提示词重试。</p>
+        <div class="g-grid" id="g-grid"></div>
+      </section>
+
+      <section class="faq">
+        <h2>常见问题</h2>
+        <details>
+          <summary>生成一段视频会消耗多少积分？</summary>
+          <p>提交任务后页面会立即展示「预计消耗」；使用本地模拟引擎不消耗 token。真实额度余额以任务明细卡展示为准。</p>
+        </details>
+        <details>
+          <summary>大概多久能生成完？</summary>
+          <p>本地模拟引擎通常几秒内完成；火山 API 视排队与所选时长而定，页面会持续刷新任务进度，无需停留在本页。</p>
+        </details>
+        <details>
+          <summary>生成失败了怎么办？</summary>
+          <p>结果区会显示失败原因；你可以到「最近任务」里对失败任务点「复用提示词」，修改后重试。</p>
+        </details>
+        <details>
+          <summary>上传的参考视频会被怎么处理？</summary>
+          <p>参考视频仅用于本次生成任务，保存在本服务端任务目录中；请勿上传涉密或违规内容。</p>
+        </details>
+      </section>
+
+      <footer>
+        <span>FrameBurn · AI 视频生成实验平台 · v0.2.0</span>
+        <span>生成内容请遵守当地法律法规，请勿用于侵权或违规用途</span>
+      </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

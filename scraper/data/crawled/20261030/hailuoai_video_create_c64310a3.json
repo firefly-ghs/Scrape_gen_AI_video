@@ -1,0 +1,40 @@
+{
+  "url": "https://hailuoai.video/create",
+  "fetched_at": "2026-10-30T19:58:17",
+  "title": "AI Video & Image Creator | Start Creating | Hailuo AI",
+  "meta": {
+    "description": "Start creating with Hailuo AI's video & image tools. Generate videos from text or images, or make new AI art. Simple, fast, and ready for your ideas.",
+    "keywords": "AI Video & Image Creator | Start Creating | Hailuo AI",
+    "og_title": "AI Video & Image Creator | Start Creating | Hailuo AI",
+    "og_description": "Start creating with Hailuo AI's video & image tools. Generate videos from text or images, or make new AI art. Simple, fast, and ready for your ideas.",
+    "og_image": "https://cdn.hailuoai.video/open-hailuo-video-web/public_assets/favicon.png"
+  },
+  "headings": {
+    "h1": [],
+    "h2": [],
+    "h3": []
+  },
+  "paragraphs": [],
+  "cta_texts": [
+    "视频 H3",
+    "图片"
+  ],
+  "nav_links": [
+    "首页",
+    "Design Hot",
+    "资产",
+    "工具",
+    "视频 H3",
+    "图片",
+    "音频"
+  ],
+  "stats": {
+    "image_count": 1,
+    "link_count": 8,
+    "visible_text_len": 94
+  },
+  "status": "ok",
+  "error": null,
+  "render_used": true,
+  "screenshot": "hailuoai_video_create_c64310a3.png"
+}

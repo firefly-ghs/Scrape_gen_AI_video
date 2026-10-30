@@ -1,0 +1,80 @@
+{
+  "url": "https://kling.ai/blog/kling40-kling-visual-realism-creative-control-introducing-storytelling",
+  "fetched_at": "2026-10-30T19:57:18",
+  "title": "Introducing Kling 4.0: Visual Realism, Creative Control, and Next-Level Storytelling",
+  "meta": {
+    "description": "Kling 4.0 takes visual realism, creative control, and narrative completeness to a new level, with major updates across dynamic motions, native 30-second generation, 10-bit HDR, omni reference, multiple keyframes, and more.",
+    "keywords": "",
+    "og_title": "Introducing Kling 4.0: Visual Realism, Creative Control, and Next-Level Storytelling",
+    "og_description": "Kling 4.0 takes visual realism, creative control, and narrative completeness to a new level, with major updates across dynamic motions, native 30-second generation, 10-bit HDR, omni reference, multiple keyframes, and more.",
+    "og_image": "https://static-49.klingai-cdn-aws.com/kling-blog/file/769c0ddc905af1fee870db0a87d343a66a134714ed17c3cf1309c082b57bd4dc.png"
+  },
+  "headings": {
+    "h1": [
+      "Introducing Kling 4.0: Visual Realism, Creative Control, and Next-Level Storytelling"
+    ],
+    "h2": [
+      "You might also like"
+    ],
+    "h3": [
+      "From One Card to an Ever-Changing World: The Making of KING CARD with Kling 4.0",
+      "What Is an Animatic and How Do You Make One?",
+      "Kling 4.0 at Work: Bringing Creative Vision into Production",
+      "CapCut Reviews: Features, Plans, and Who It Suits"
+    ]
+  },
+  "paragraphs": [
+    "Over the past few months, we’ve been listening closely to our creator community and continuously improving Kling based on your feedback.",
+    "Now, Kling 4.0 is entering early access, with a wider rollout coming in October. Meanwhile, Kling 4.0 Flash will be available to Ultra Yearly subscribers starting September 28.",
+    "Kling 4.0 takes visual realism, creative control, and narrative completeness to a new level, with major updates across dynamic motions, native 30-second generation, 10-bit HDR, omni reference, multiple keyframes, and more.",
+    "Together, these upgrades put more creative control in your hands.",
+    "Dynamic Motions and complex camera movements remain smooth and stable. Whether it’s high-speed movement, continuous action, tracking shots, or orbit shots, footage stays stable and seamless.",
+    "Supports high-quality audio and two-channel stereo. More accurate lip-sync keeps voices, dialogue, and performances naturally synchronized, delivering a more immersive audio experience.",
+    "Kling 4.0 also improves lip-sync accuracy, creating a more natural connection between voice, dialogue, and performance for characters that feel more alive.",
+    "10-bit HDR output at 4K and 1080p is coming soon, delivering richer color and smoother transitions between light and shadow. In high-contrast scenes such as backlit shots, night scenes, and neon-lit settings, it preserves more detail in highlights and shadows, reduces color banding, and gives creators more flexibility in color grading. 21:9 ultrawide format is also supported, expanding the field of view and giving creators more room to compose immersive, cinematic shots.",
+    "Use up to 15 reference assets in a single generation, combining images, videos, and subjects (including a specified voice for a subject). You can include up to 10 images, 5 videos (up to 30 seconds in total, including video subjects), and 7 subjects (including subjects defined by multiple images or video).",
+    "Make targeted edits to character expressions, body movements, camera positions, camera movements, overall style, video backgrounds, and more, while keeping the rest of the scene stable. Reduce repeated generations and iterate more efficiently.",
+    "Reference the narrative pacing, shot composition, and visual expression of existing videos while replacing products, characters, and other assets. No need to start from scratch or repeatedly fine-tune. Quickly turn proven creative concepts into your own content for social media, product advertising, fashion and beauty, consumer electronics, and other commercial video applications.",
+    "Kling 4.0 generates videos up to 30 seconds long in a single generation, supporting long takes and continuous storytelling. Emotions, actions, and camera movement develop naturally within one coherent narrative.",
+    "Use up to 10 keyframe images to define key visual moments and precisely control character poses and expressions, scene transitions, and story beats. The pace of the story is yours to shape.",
+    "Whether you start with a simple prompt or a carefully crafted, complex one (now up to 8,000 tokens), Kling 4.0 can expand and refine your instructions with a director’s eye, helping you develop your creative vision further.",
+    "Create in styles ranging from vlogs and realistic documentaries to clay animation, glitch art, felt textures, and 3D cyber aesthetics, across a variety of subjects and creative concepts.",
+    "Kling 4.0 now supports Chinese, English, Japanese, Korean, Spanish, Portuguese, German, French, Hindi, and more. It also supports a range of accents and dialects, including Beijing, Taiwanese, Northeastern Chinese, Sichuanese, and Cantonese, as well as American, British, and Indian English accents.",
+    "It can also generate text in multiple languages, emojis, and logos, keeping them clear and stable even through complex movement and scene changes.",
+    "Built for frequent creation, Kling 4.0 Flash combines fast generation with excellent value, making it easier to bring your video ideas to life.",
+    "Upload a video and extend it multiple times, up to 2 minutes, giving actions, emotional buildup, and multi-part storylines more room to unfold (coming soon).",
+    "We’ve redesigned Kling’s creation page to make the creative process clearer and the workflow more efficient.",
+    "We’ve brought the input options previously spread across the toolbar into a single box. Combine images, videos, and audio as references in one place, and bring your ideas together in a single creative workflow.",
+    "The creation page now lets you switch between grid and list views. Grid view makes it easy to browse and compare multiple creations at a glance, while list view lets you review and edit them one by one.",
+    "Preview, edit, and add assets within the same timeline. Review and adjust as you go, and bring in new assets at any time without leaving your workflow or starting over.",
+    "The new canvas lets you create nodes, connect content, and arrange your workspace freely. It brings your assets, creative process, and generated results into one view, making even complex workflows easier to follow. You can also tell the Agent what you want to create. It can understand your request, use tools, and carry out tasks to help move your project forward.",
+    "Start creating now and discover what’s new with Kling 4.0.",
+    "© 2024-2026 kling.ai All rights reserved."
+  ],
+  "cta_texts": [
+    "Try Now",
+    "Create now",
+    "Creative Studio",
+    "Image Generation",
+    "Video Generation",
+    "Motion Control",
+    "Agent",
+    "More Tools",
+    "API",
+    "Pricing",
+    "Documentation",
+    "Resources",
+    "Kling AI User Guide",
+    "Features",
+    "About Us",
+    "Affiliate Program"
+  ],
+  "nav_links": [],
+  "stats": {
+    "image_count": 34,
+    "link_count": 33,
+    "visible_text_len": 7440
+  },
+  "status": "ok",
+  "error": null
+}

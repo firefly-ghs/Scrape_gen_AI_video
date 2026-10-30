@@ -1,0 +1,57 @@
+{
+  "url": "https://runway.com/campaign/speed-to-value",
+  "fetched_at": "2026-10-30T19:58:22",
+  "title": "Make Your First Video in 2 Minutes | Runway",
+  "meta": {
+    "description": "From idea to finished video in under two minutes. Describe what you want and Runway generates it — no crew, no editing software, no setup.",
+    "keywords": "",
+    "og_title": "Make Your First Video in 2 Minutes | Runway",
+    "og_description": "From idea to finished video in under two minutes. Describe what you want and Runway generates it — no crew, no editing software, no setup.",
+    "og_image": "https://runway.com/opengraph-image.png?opengraph-image.1oltnwfb7pfkb.png"
+  },
+  "headings": {
+    "h1": [
+      "Make your first video\nin 2 minutes."
+    ],
+    "h2": [
+      "Made with Runway",
+      "Your first video is one prompt away."
+    ],
+    "h3": []
+  },
+  "paragraphs": [
+    "Runway app for iPhone Runway app for Android",
+    "Describe what you want. Runway generates the rest.",
+    "Headphones campaign. One prompt.",
+    "EVERY MODEL YOU NEED. ONE PLATFORM.",
+    "No credit card required. 500 free credits."
+  ],
+  "cta_texts": [
+    "Try app",
+    "Pricing",
+    "Login",
+    "Try Runway",
+    "Make your first video",
+    "See pricing →",
+    "Android app ↗",
+    "iOS app ↗",
+    "Your Privacy Choices",
+    "Cookie Settings"
+  ],
+  "nav_links": [
+    "Creative",
+    "Dev",
+    "Robotics",
+    "Research",
+    "Resources",
+    "Enterprise",
+    "Pricing"
+  ],
+  "stats": {
+    "image_count": 17,
+    "link_count": 86,
+    "visible_text_len": 1913
+  },
+  "status": "ok",
+  "error": null
+}
