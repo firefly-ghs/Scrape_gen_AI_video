@@ -1,0 +1,40 @@
+{
+  "fetched_at": "2026-10-30T21:19:43",
+  "targets": [
+    {
+      "url": "https://klingai.com/app?r=203&rid=version-publish-function-dialog",
+      "slug": "klingai_com_app_9f5834f5",
+      "status": "ok",
+      "title": "可灵AI创作台 - AI生成视频与图片",
+      "error": null,
+      "render_used": true,
+      "screenshot": "klingai_com_app_9f5834f5.png"
+    },
+    {
+      "url": "https://app.kling.ai/",
+      "slug": "app_kling_ai_5496e720",
+      "status": "error",
+      "title": "",
+      "error": "requests 与浏览器渲染均失败",
+      "render_used": false
+    },
+    {
+      "url": "https://hailuoai.video/create",
+      "slug": "hailuoai_video_create_c64310a3",
+      "status": "ok",
+      "title": "AI Video & Image Creator | Start Creating | Hailuo AI",
+      "error": null,
+      "render_used": true,
+      "screenshot": "hailuoai_video_create_c64310a3.png"
+    },
+    {
+      "url": "https://jimeng.jianying.com/ai-tool/generate?type=agentic",
+      "slug": "jimeng_jianying_com_ai_tool_generate_210877f0",
+      "status": "ok",
+      "title": "即梦AI - 一站式AI创作平台",
+      "error": null,
+      "render_used": true,
+      "screenshot": "jimeng_jianying_com_ai_tool_generate_210877f0.png"
+    }
+  ]
+}

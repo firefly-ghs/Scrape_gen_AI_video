@@ -1,0 +1,21 @@
+{
+  "url": "https://app.kling.ai/",
+  "fetched_at": "2026-10-30T21:20:02",
+  "title": "",
+  "meta": {},
+  "headings": {
+    "h1": [],
+    "h2": [],
+    "h3": []
+  },
+  "paragraphs": [],
+  "cta_texts": [],
+  "nav_links": [],
+  "stats": {
+    "image_count": 0,
+    "link_count": 0,
+    "visible_text_len": 0
+  },
+  "status": "error",
+  "error": "requests 与浏览器渲染均失败"
+}

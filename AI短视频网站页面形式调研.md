@@ -29,7 +29,14 @@
 4. **行业应用区**：按场景分栏（广告营销 / 影视 / 音乐 MV / 电商 / 智能设备），每栏挂权威案例（戛纳获奖短片、亚马逊剧集、好莱坞全 AI 长片等）做背书；
 5. **创作者证言 + 合作伙伴墙 + 底部 CTA**。
 
+**创作页（工作台）实测入口（准确网址）：**
+
+- **创作工作台 = `https://klingai.com/app`**（带会话/路由参数时形如 `https://klingai.com/app?r=203&rid=version-publish-function-dialog`，`r`/`rid` 仅路由参数，核心路径是 `/app`）。注意：这是登录后应用内页，未登录会被跳登录墙，抓取只拿到外壳/导航，GUI 细节需登录态抓取；
+- 国际版工作台：`https://app.kling.ai/`（同一产品，另一域名入口）。
+
 **创作页（工作台）形式：**
+
+> 2026-10-30 实测（`workspace_20261030/klingai_com_app_9f5834f5.html/png`，未登录态）——页面标题「可灵AI创作台 - AI生成视频与图片」，H1「Create Videos, Images and More in One Workspace」；**命令中心式输入条**：大圆角输入框内联「＋上传 / 视频生成·Pro 模型切换 / 10s 时长开关 / 绿色『生成』按钮」，时长档位 3/5/10/15/20/25；左侧图标栏（首页/生成/画布/资产）；能力卡墙（视频生成/动作控制/图片生成/数字人/创意特效/AI写真/视频生音效/画质增强/对口型/风格转绘）；「创作技能」分类（营销广告/影视叙事/创意设计/大众创作）；下方作品流带「推荐/关注/活动/插件/探索」标签页。CTA：发布作品 / 立即体验。
 
 - 模式选择：Omni Reference（默认，可传图/视频/音频混合参考，最多 10 个素材）/ 文生视频 / 图生视频 / 关键帧模式（up to 10 张，2:5–5:2）；
 - 输入区带**提示词结构引导**：主体 + 动作 + 场景 +（电影语言 + 灯光 + 氛围）；
@@ -217,6 +224,16 @@ FrameBurn 当前页面：文本框输入 + 参考视频上传 → 异步任务 +
 - 浏览器渲染：默认 `--render auto`，requests 拿到可见文本 <300 字（JS 渲染 SPA / 反爬验证页）时自动用 Playwright 无头浏览器重抓并存首屏截图；`--render always|off` 可强制/关闭（依赖：`pip install playwright`，优先使用系统 Edge/Chrome，无需下载浏览器）
 - 材料处理：`scraper/process.py` —— 把抓取 JSON 汇总为《页面实录汇总.md》，可直接复制使用
 - 材料位置：`scraper/data/crawled/20261030/`（每页 `{slug}.html` 快照 + `{slug}.json` 结构化数据 + 浏览器渲染页 `{slug}.png` 首屏截图 + `页面实录汇总.md`）
+- 工作台页面补抓：`scraper/data/crawled/workspace_20261030/`（准确创作页入口，2016-10-30 补抓）
+
+### 工作台页面补抓状态（2026-10-30，--render always）
+
+| 页面 | 结果 |
+|---|---|
+| `klingai.com/app`（可灵创作工作台） | ✅ 浏览器渲染成功：1705 字 + 首屏截图（命令中心输入条/能力卡墙/作品流完整可见，2.1 已回填） |
+| `hailuoai.video/create`（海螺创作页） | ✅ 渲染成功（纯应用内页，仅导航+CTA 文本，截图可用） |
+| `jimeng.jianying.com/ai-tool/generate`（即梦创作页） | ✅ 渲染成功：2213 字，DOM 完整 |
+| `app.kling.ai`（可灵国际版） | ❌ 本机网络 DNS 解析失败（ERR_NAME_NOT_RESOLVED），未取到材料 |
 
 ### 本轮抓取状态（2026-10-30，浏览器渲染版）
 
@@ -239,6 +256,8 @@ FrameBurn 当前页面：文本框输入 + 参考视频上传 → 异步任务 +
 
 ## 七、信息来源
 
+- [Kling AI 创作工作台（准确入口 /app）](https://klingai.com/app?r=203&rid=version-publish-function-dialog)
+- [Kling AI 创作工作台（国际版 app.kling.ai）](https://app.kling.ai/)
 - [Kling AI 官网首页](https://kling.ai/)
 - [Kling 4.0 官方博客（网格/列表视图、时间线）](https://kling.ai/blog/kling40-kling-visual-realism-creative-control-introducing-storytelling)
 - [Kling VIDEO O1 用户指南（提示词结构）](https://kling.ai/quickstart/klingai-video-o1-user-guide)
