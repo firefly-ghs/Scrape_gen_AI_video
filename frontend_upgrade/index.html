@@ -176,6 +176,43 @@
       .g-actions .btn-ghost { font-size: .8rem; padding: 6px 10px; }
       .btn-danger { color: #fecaca; border-color: rgba(248, 113, 113, .4); }
 
+      /* ---------- 竞品洞察 ---------- */
+      .insights { margin-top: 28px; }
+      .insights h2 { margin: 0 0 4px; font-size: 1.05rem; }
+      .insights .g-sub { margin: 0 0 16px; color: var(--muted); font-size: .86rem; }
+      .insight-grid { display: grid; gap: 16px; grid-template-columns: 1.2fr 1fr 1fr; }
+      .insight-col {
+        border: 1px solid var(--line); border-radius: 16px; background: var(--panel);
+        padding: 16px;
+      }
+      .insight-col h3 { margin: 0 0 12px; font-size: .95rem; }
+      .insight-list { display: grid; gap: 10px; }
+      .insight-item {
+        border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+        background: rgba(15, 23, 42, .55);
+      }
+      .insight-item .title { font-weight: 600; font-size: .88rem; }
+      .insight-item .meta { color: var(--muted); font-size: .78rem; margin-top: 3px; }
+      .insight-item .desc { color: #cbd5e1; font-size: .82rem; line-height: 1.55; margin-top: 6px; }
+      .pattern-list { margin: 0; padding-left: 18px; color: var(--muted); font-size: .84rem; line-height: 1.7; }
+      .pattern-list li + li { margin-top: 4px; }
+      .template-list { display: grid; gap: 10px; }
+      .template-card {
+        border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+        background: rgba(15, 23, 42, .55);
+      }
+      .template-card .top {
+        display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        margin-bottom: 6px;
+      }
+      .template-card .name { font-size: .86rem; font-weight: 600; }
+      .template-card .rec { color: var(--muted); font-size: .76rem; }
+      .template-card .text {
+        color: #cbd5e1; font-size: .81rem; line-height: 1.55;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .template-card .btn-ghost { margin-top: 8px; width: 100%; font-size: .8rem; }
+
       /* ---------- FAQ / 页脚 ---------- */
       .faq { margin-top: 28px; }
       .faq h2 { margin: 0 0 16px; font-size: 1.05rem; }
@@ -194,6 +231,7 @@
       @media (max-width: 900px) {
         .layout { grid-template-columns: 1fr; }
         .row { grid-template-columns: 1fr; }
+        .insight-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -219,6 +257,7 @@
           <h2>创建生成任务</h2>
 
           <form id="generate-form">
+            <input type="hidden" name="content_type" value="video" />
             <div>
               <label for="prompt">创作提示词</label>
               <div class="chips" id="prompt-chips"></div>
@@ -257,6 +296,7 @@
               <div>
                 <label for="video-file">参考视频（可选，视频生成模式必填）</label>
                 <input id="video-file" name="video" type="file" accept="video/mp4" />
+                <p class="helper" id="video-mode-hint">文本生成模式：参考视频可选。</p>
               </div>
               <div>
                 <label>&nbsp;</label>
@@ -296,6 +336,25 @@
         <div class="g-grid" id="g-grid"></div>
       </section>
 
+      <section class="insights" id="insights" hidden>
+        <h2>短视频网站页面洞察</h2>
+        <p class="g-sub">内容来自 `Scrape_gen_AI_video` 调研，可一键把模板写入你的提示词框。</p>
+        <div class="insight-grid">
+          <article class="insight-col">
+            <h3>竞品结构速览</h3>
+            <div class="insight-list" id="insight-source-list"></div>
+          </article>
+          <article class="insight-col">
+            <h3>可复用页面模式</h3>
+            <ul class="pattern-list" id="insight-pattern-list"></ul>
+          </article>
+          <article class="insight-col">
+            <h3>灵感提示词模板</h3>
+            <div class="template-list" id="insight-template-list"></div>
+          </article>
+        </div>
+      </section>
+
       <section class="faq">
         <h2>常见问题</h2>
         <details>
@@ -322,6 +381,6 @@
       </footer>
     </div>
 
-    <script src="/static/app.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
