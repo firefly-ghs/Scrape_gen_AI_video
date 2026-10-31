@@ -99,6 +99,31 @@
         background: linear-gradient(135deg, rgba(124, 58, 237, .35), rgba(34, 211, 238, .25));
       }
       .helper { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+      .auth-tip { margin-top: 10px; color: var(--muted); font-size: .82rem; }
+
+      .auth-box .row { grid-template-columns: 1fr 1fr; }
+      .auth-box p { margin: 10px 0 0; color: #fecaca; font-size: .86rem; min-height: 20px; }
+      .auth-me {
+        border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+        background: rgba(15, 23, 42, .4);
+      }
+      .auth-me p { margin: 0 0 10px; color: var(--text); font-size: .9rem; }
+
+      .config-collapse {
+        border: 1px solid var(--line); border-radius: 14px; background: rgba(15, 23, 42, .35);
+        padding: 12px 14px;
+      }
+      .config-collapse > summary {
+        cursor: pointer; color: var(--text); font-size: .9rem; font-weight: 600;
+        list-style: none; display: flex; align-items: center; gap: 8px;
+      }
+      .config-collapse > summary::-webkit-details-marker { display: none; }
+      .config-collapse > summary::before {
+        content: "▸"; color: var(--accent-2); font-size: .95rem; transition: transform .15s ease;
+      }
+      .config-collapse[open] > summary::before { transform: rotate(90deg); }
+      .config-collapse-body { margin-top: 14px; display: grid; gap: 16px; }
+      .config-preview { margin-top: 8px; color: var(--muted); font-size: .82rem; }
 
       .btn-primary {
         width: 100%; margin-top: 4px; border: none; border-radius: 12px; padding: 14px;
@@ -209,13 +234,33 @@
       </header>
 
       <div class="trust-tags">
-        <span class="trust-tag">无需登录，即开即用</span>
+        <span class="trust-tag">登录后可查看燃料与任务历史</span>
         <span class="trust-tag">本地生成不消耗 token</span>
         <span class="trust-tag">480p 测试 3 秒出片</span>
       </div>
 
       <main class="layout">
-        <section class="panel form-panel">
+        <section class="panel form-panel" id="auth-panel">
+          <h2>登录 / 注册</h2>
+          <div class="auth-box" id="auth-box">
+            <div class="row">
+              <input id="auth-username" type="text" autocomplete="username" placeholder="用户名（3-32 字符）" />
+              <input id="auth-password" type="password" autocomplete="current-password" placeholder="密码（6-64 字符）" />
+            </div>
+            <div class="row">
+              <button class="btn-ghost" type="button" id="btn-login">登录</button>
+              <button class="btn-ghost" type="button" id="btn-register">注册并领取燃料</button>
+            </div>
+            <p id="auth-msg"></p>
+            <div class="auth-tip">说明：登录后才会展示燃料明细与任务历史。</div>
+          </div>
+          <div class="auth-me" id="auth-me" style="display:none">
+            <p>已登录：<strong id="me-name"></strong>｜燃料余额：<strong id="me-fuel"></strong></p>
+            <button class="btn-ghost" type="button" id="btn-logout">退出登录</button>
+          </div>
+        </section>
+
+        <section class="panel form-panel" id="generate-panel" style="display:none">
           <h2>创建生成任务</h2>
 
           <form id="generate-form">
@@ -225,47 +270,53 @@
               <textarea id="prompt" name="prompt" rows="6" placeholder="例如：夜晚城市，雨雾弥漫，镜头缓慢推进，人物在路灯下抬头望向天空。"></textarea>
             </div>
 
-            <div class="row">
-              <div>
-                <label for="quality">画质</label>
-                <div class="pill-group" id="quality-pills"></div>
-              </div>
-              <div>
-                <label>时长（秒）</label>
-                <div class="pill-group" id="duration-pills"></div>
-              </div>
-            </div>
+            <details class="config-collapse" id="config-details">
+              <summary>参数配置（点击展开）</summary>
+              <div class="config-preview">默认参数：画质首档 + 3s + 文本生成。展开后可按需精细调整。</div>
+              <div class="config-collapse-body">
+                <div class="row">
+                  <div>
+                    <label for="quality">画质</label>
+                    <div class="pill-group" id="quality-pills"></div>
+                  </div>
+                  <div>
+                    <label>时长（秒）</label>
+                    <div class="pill-group" id="duration-pills"></div>
+                  </div>
+                </div>
 
-            <div class="row">
-              <div>
-                <label for="mode">输入类型</label>
-                <select id="mode" name="mode">
-                  <option value="text" selected>文本生成</option>
-                  <option value="video">视频生成</option>
-                </select>
-              </div>
-              <div>
-                <label for="provider">生成引擎</label>
-                <select id="provider" name="provider">
-                  <option value="local" selected>本地模拟（不消耗 token）</option>
-                  <option value="volc">火山 API（会消耗 token）</option>
-                </select>
-              </div>
-            </div>
+                <div class="row">
+                  <div>
+                    <label for="mode">输入类型</label>
+                    <select id="mode" name="mode">
+                      <option value="text" selected>文本生成</option>
+                      <option value="video">视频生成</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="provider">生成引擎</label>
+                    <select id="provider" name="provider">
+                      <option value="local" selected>本地模拟（不消耗 token）</option>
+                      <option value="volc">火山 API（会消耗 token）</option>
+                    </select>
+                  </div>
+                </div>
 
-            <div class="row">
-              <div>
-                <label for="video-file">参考视频（可选，视频生成模式必填）</label>
-                <input id="video-file" name="video" type="file" accept="video/mp4" />
+                <div class="row">
+                  <div>
+                    <label for="video-file">参考视频（可选，视频生成模式必填）</label>
+                    <input id="video-file" name="video" type="file" accept="video/mp4" />
+                  </div>
+                  <div>
+                    <label>&nbsp;</label>
+                    <label class="switch-row for-audio">
+                      <input id="with_audio" name="with_audio" type="checkbox" />
+                      <span>带音频</span>
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div>
-                <label>&nbsp;</label>
-                <label class="switch-row for-audio">
-                  <input id="with_audio" name="with_audio" type="checkbox" />
-                  <span>带音频</span>
-                </label>
-              </div>
-            </div>
+            </details>
 
             <p class="helper">建议：先用 480p + 3s + 本地模拟验证流程，再切火山 API。</p>
 
@@ -273,7 +324,7 @@
           </form>
         </section>
 
-        <section class="panel result-panel">
+        <section class="panel result-panel" id="result-panel" style="display:none">
           <h2>生成结果</h2>
           <div class="steps" id="steps">
             <div class="step" data-step="queued"><span class="st-dot"></span>排队</div>
@@ -299,8 +350,8 @@
       <section class="faq">
         <h2>常见问题</h2>
         <details>
-          <summary>生成一段视频会消耗多少积分？</summary>
-          <p>提交任务后页面会立即展示「预计消耗」；使用本地模拟引擎不消耗 token。真实额度余额以任务明细卡展示为准。</p>
+          <summary>生成一段视频会消耗多少燃料？</summary>
+          <p>登录后提交任务，页面会展示「预计消耗」与「剩余额度」；使用本地模拟引擎不消耗 token。</p>
         </details>
         <details>
           <summary>大概多久能生成完？</summary>

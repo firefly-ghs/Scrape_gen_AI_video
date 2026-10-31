@@ -254,3 +254,32 @@
 - 只要页面：`app/static/` 三件套（index.html / styles.css / app.js），替换目标站同路径文件即可；
 - 要完整生成能力：随部署包 `frameburn_deploy.zip`（app/ 后端 + config/ + requirements.txt + .env.example + run.sh）整体上线，密钥只放服务器 `.env`；
 - 登录/购买当前是前端模拟，接后端时替换 `app.js` 中标注 `TODO` 的函数为真实接口即可。
+
+---
+
+### R6 · 登录前隐藏燃料 + 参数点击后显示 + 轮询链路优化（2026-10-30，frontend_upgrade 落地）
+
+**本轮目标（来自最新需求）：**
+1. 登录前不显示燃料相关内容；
+2. 参数具体内容必须点击后才显示；
+3. 轮询执行链路做稳定性优化；
+4. 同步更新 md，便于继续迭代。
+
+**已落实（frontend_upgrade）：**
+- 新增登录/注册区与登录态切换：
+  - 未登录：仅展示登录区；
+  - 已登录：展示创作面板、结果面板、最近任务、燃料余额；
+- 燃料明细卡（预计消耗/本次消耗/额度/剩余）仅在登录后显示；
+- 参数区改为折叠结构：
+  - 收起态只显示「参数配置（点击展开）」与摘要文案；
+  - 点击后才显示画质、时长、输入类型、引擎、参考视频、带音频；
+- 轮询链路优化：
+  - 统一走带鉴权的 `apiFetch`；
+  - 401 自动回退登录态并停止轮询；
+  - 轮询前清理旧 timer，避免重复轮询；
+  - 视频播放地址自动追加 token（本地受保护视频流）。
+
+**本轮修改文件：**
+- `Scrape_gen_AI_video/frontend_upgrade/index.html`
+- `Scrape_gen_AI_video/frontend_upgrade/app.js`
+- `Scrape_gen_AI_video/FrameBurn页面改版建议.md`
