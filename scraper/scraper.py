@@ -2,27 +2,19 @@
 """竞品页面爬虫：抓取 AI 短视频生成网站的实际网页资料。
 
 目标站点默认来自调研 md 文件（AI短视频网站页面形式调研.md）的「信息来源」章节；
-也可以用 --urls 手动指定。每页输出三类材料：
+也可以用 --urls 手动指定。每页输出两类材料：
   - {slug}.html  原始页面快照
   - {slug}.json  结构化摘要（标题/元数据/标题树/段落/CTA/导航/统计）
-  - {slug}.png   首屏截图（仅当该页用了浏览器渲染时）
 再输出 _manifest.json 统一记录本轮抓取状态。
 
-JS 渲染支持：默认 --render auto，requests 拿到的可见文本少于 300 字
-（JS 渲染 SPA / 反爬验证页）时，自动用 Playwright 无头浏览器重抓并截首屏图。
-浏览器按顺序尝试：系统 Edge -> 系统 Chrome -> Playwright 自带的 Chromium。
-
 用法：
-  python scraper.py                  # 抓一轮（内容过少自动浏览器渲染）
-  python scraper.py --render always  # 所有页面都用浏览器渲染
-  python scraper.py --render off     # 只用 requests，不用浏览器
+  python scraper.py                  # 抓一轮
   python scraper.py --loop 86400     # 轮询模式：每 86400 秒重抓一轮（Ctrl+C 退出）
   python scraper.py --urls https://a.com https://b.com   # 手动指定 URL
 """
 import argparse
 import hashlib
 import json
-import os
 import re
 import sys
 import time
@@ -34,13 +26,11 @@ import requests
 from bs4 import BeautifulSoup
 
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_MD = BASE_DIR.parent / "AI短视频网站页面形式调研.md"
 DEFAULT_OUTDIR = BASE_DIR / "data" / "crawled"
-# 浏览器二进制目录（安装 Playwright 自带 Chromium 时用，放项目内便于沙箱环境）
-DEFAULT_BROWSERS_PATH = BASE_DIR.parent / ".pw-browsers"
 
 HEADERS = {
     "User-Agent": (
@@ -54,10 +44,6 @@ HEADERS = {
 REQUEST_TIMEOUT = 25
 RETRY_TIMES = 2
 SLEEP_BETWEEN_PAGES = 1.5
-# requests 结果可见文本少于该字数时，判定为"壳子页面"，触发浏览器渲染补抓
-THIN_CONTENT_THRESHOLD = 300
-RENDER_WAIT_MS = 5000  # 打开页面后等待 JS 渲染的毫秒数
-RENDER_TIMEOUT_MS = 60000
 
 
 def extract_md_links(md_path: Path) -> list:
@@ -97,50 +83,6 @@ def fetch(url: str) -> str:
             last_err = e
             time.sleep(2 * (attempt + 1))
     raise last_err
-
-
-def render_with_browser(url: str, screenshot_path: Path) -> str:
-    """用 Playwright 无头浏览器渲染页面，返回渲染后的 HTML，并保存首屏截图。
-
-    浏览器按顺序尝试：系统 Edge -> 系统 Chrome -> Playwright 自带 Chromium。
-    未安装 playwright 或全部浏览器不可用时抛异常（消息里带解法）。
-    """
-    try:
-        from playwright.sync_api import sync_playwright  # 延迟导入，未安装时给出清晰提示
-    except ImportError as e:
-        raise RuntimeError(
-            "未安装 playwright：pip install playwright；"
-            "如需自带浏览器：python -m playwright install chromium"
-        ) from e
-
-    os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(DEFAULT_BROWSERS_PATH))
-    launch_options = [{"channel": "msedge"}, {"channel": "chrome"}, {}]
-    last_err = None
-    with sync_playwright() as pw:
-        for opts in launch_options:
-            try:
-                browser = pw.chromium.launch(headless=True, **opts)
-                break
-            except Exception as e:  # noqa: BLE001
-                last_err = e
-        else:
-            raise RuntimeError(
-                f"没有可用的 Chromium 内核浏览器（Edge/Chrome/自带 Chromium 均失败，"
-                f"最后错误：{last_err}）。可运行：python -m playwright install chromium"
-            )
-        try:
-            page = browser.new_page(
-                viewport={"width": 1920, "height": 1080},
-                user_agent=HEADERS["User-Agent"],
-                locale="zh-CN",
-            )
-            page.goto(url, wait_until="domcontentloaded", timeout=RENDER_TIMEOUT_MS)
-            page.wait_for_timeout(RENDER_WAIT_MS)
-            html = page.content()
-            page.screenshot(path=str(screenshot_path))
-            return html
-        finally:
-            browser.close()
 
 
 def _texts(soup, name, min_len=1, limit=None) -> list:
@@ -213,25 +155,8 @@ def parse_page(html: str, url: str) -> dict:
     }
 
 
-def empty_result(url: str, error: str) -> dict:
-    """占位结果，requests 与浏览器渲染都失败时使用。"""
-    return {
-        "url": url,
-        "fetched_at": datetime.now().isoformat(timespec="seconds"),
-        "title": "",
-        "meta": {},
-        "headings": {"h1": [], "h2": [], "h3": []},
-        "paragraphs": [],
-        "cta_texts": [],
-        "nav_links": [],
-        "stats": {"image_count": 0, "link_count": 0, "visible_text_len": 0},
-        "status": "error",
-        "error": error,
-    }
-
-
-def scrape_once(targets: list, outdir: Path, render: str = "auto") -> Path:
-    """抓一轮：每个 URL 产出 slug.json + slug.html（浏览器渲染时另有 slug.png），最后写 _manifest.json。"""
+def scrape_once(targets: list, outdir: Path) -> Path:
+    """抓一轮：每个 URL 产出 slug.json + slug.html，最后写 _manifest.json。"""
     outdir.mkdir(parents=True, exist_ok=True)
     manifest = {
         "fetched_at": datetime.now().isoformat(timespec="seconds"),
@@ -239,66 +164,29 @@ def scrape_once(targets: list, outdir: Path, render: str = "auto") -> Path:
     }
     for i, url in enumerate(targets, 1):
         slug = slugify(url)
-        item = {
-            "url": url,
-            "slug": slug,
-            "status": "ok",
-            "title": "",
-            "error": None,
-            "render_used": False,
-        }
+        item = {"url": url, "slug": slug, "status": "ok", "title": "", "error": None}
         print(f"[{i}/{len(targets)}] {url}")
-        html, data = None, None
-
-        # 1) 普通请求（--render always 时跳过，直接用浏览器）
-        if render != "always":
-            try:
-                html = fetch(url)
-                data = parse_page(html, url)
-            except Exception as e:  # noqa: BLE001
-                print(f"    requests 失败：{type(e).__name__}: {str(e)[:60]}")
-
-        # 2) 内容过少 / 请求失败 / 指定渲染 时，用浏览器补抓
-        is_thin = data is None or data["stats"]["visible_text_len"] < THIN_CONTENT_THRESHOLD
-        if render != "off" and (is_thin or render == "always"):
-            reason = "指定 --render always" if render == "always" else (
-                f"文本仅 {data['stats']['visible_text_len'] if data else 0} 字，判定为 JS 渲染页"
-            )
-            print(f"    {reason}，用浏览器渲染重抓…")
-            try:
-                shot_path = outdir / f"{slug}.png"
-                html = render_with_browser(url, shot_path)
-                data = parse_page(html, url)
-                data["render_used"] = True
-                data["screenshot"] = shot_path.name
-                item["render_used"] = True
-                item["screenshot"] = shot_path.name
-            except Exception as e:  # noqa: BLE001
-                print(f"    浏览器渲染失败：{type(e).__name__}: {str(e)[:80]}（保留原结果）")
-
-        # 3) 落盘
-        if data is None:
-            item["status"] = "error"
-            item["error"] = "requests 与浏览器渲染均失败"
-            data = empty_result(url, item["error"])
-        else:
+        try:
+            html = fetch(url)
+            data = parse_page(html, url)
             item["title"] = data["title"]
-            if html:
-                (outdir / f"{slug}.html").write_text(html, encoding="utf-8")
-        (outdir / f"{slug}.json").write_text(
-            json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
-        )
-        tag = " [R]" if data.get("render_used") else ""
-        print(f"    OK{tag}  {data['title'][:60]} | h1={len(data['headings']['h1'])} "
-              f"h2={len(data['headings']['h2'])} 文本={data['stats']['visible_text_len']}字")
+            (outdir / f"{slug}.html").write_text(html, encoding="utf-8")
+            (outdir / f"{slug}.json").write_text(
+                json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            print(f"    OK  {data['title'][:60]} | h1={len(data['headings']['h1'])} "
+                  f"h2={len(data['headings']['h2'])} 文本={data['stats']['visible_text_len']}字")
+        except Exception as e:  # noqa: BLE001
+            item["status"] = "error"
+            item["error"] = f"{type(e).__name__}: {e}"
+            print(f"    FAIL {item['error'][:100]}")
         manifest["targets"].append(item)
         time.sleep(SLEEP_BETWEEN_PAGES)
 
     manifest_path = outdir / "_manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     ok = sum(1 for t in manifest["targets"] if t["status"] == "ok")
-    rendered = sum(1 for t in manifest["targets"] if t.get("render_used"))
-    print(f"\n本轮完成：{ok}/{len(targets)} 成功（其中浏览器渲染 {rendered} 页），材料落在 {outdir}")
+    print(f"\n本轮完成：{ok}/{len(targets)} 成功，材料落在 {outdir}")
     return manifest_path
 
 
@@ -308,12 +196,6 @@ def main():
     parser.add_argument("--md", type=Path, default=DEFAULT_MD, help="调研 md 路径")
     parser.add_argument("--outdir", type=Path, default=None, help="输出目录，缺省 data/crawled/YYYYMMDD")
     parser.add_argument("--loop", type=int, default=0, help=">0 时轮询循环：每 N 秒重抓一轮")
-    parser.add_argument(
-        "--render",
-        choices=["auto", "always", "off"],
-        default="auto",
-        help="浏览器渲染策略：auto=内容过少时自动补抓（默认）；always=全部浏览器渲染；off=只用 requests",
-    )
     args = parser.parse_args()
 
     targets = args.urls if args.urls else extract_md_links(args.md)
@@ -326,7 +208,7 @@ def main():
     outdir = args.outdir or DEFAULT_OUTDIR / day
 
     while True:
-        scrape_once(targets, outdir, render=args.render)
+        scrape_once(targets, outdir)
         if not args.loop:
             break
         print(f"\n轮询模式：{args.loop} 秒后重抓下一轮（Ctrl+C 退出）\n")

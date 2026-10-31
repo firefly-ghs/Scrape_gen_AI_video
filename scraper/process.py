@@ -69,15 +69,11 @@ def load_materials(day_dir: Path):
 def page_section(data: dict) -> str:
     """单个页面 -> md 章节。"""
     head = data["headings"]
-    method = "浏览器渲染（Playwright）" if data.get("render_used") else "HTTP 直抓"
-    if data.get("screenshot"):
-        method += f"，首屏截图 `{data['screenshot']}`"
     lines = [
         f"### {data['title'] or '(无标题)'}",
         "",
         f"- 来源：{data['url']}",
         f"- 抓取时间：{data['fetched_at']}",
-        f"- 抓取方式：{method}",
         f"- 快照：`{data['slug']}.html` / `{data['slug']}.json`",
         f"- 规模：图片 {data['stats']['image_count']} 张 | 链接 {data['stats']['link_count']} 条 | 可见文本约 {data['stats']['visible_text_len']} 字",
     ]
